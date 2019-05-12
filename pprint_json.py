@@ -1,9 +1,12 @@
 import json
 
 
-def load_data(filepath):
-    with open(filepath, 'r') as file_handler:
-        return json.load(file_handler)
+def load_data(file_path):
+    try:
+        with open(file_path, 'r') as file_handler:
+            return json.load(file_handler)
+    except (FileNotFoundError, json.decoder.JSONDecodeError):
+        return None
 
 
 def pretty_print_json(json_data):
@@ -11,8 +14,9 @@ def pretty_print_json(json_data):
 
 
 if __name__ == '__main__':
-    # filepath = "/Users/dns/Desktop/yandex/4_json/input.json"
-    filepath = input("Enter a path to file: ")
-    json_data = load_data(filepath)
-    pretty_print_json(json_data)
-
+    try:
+        file_path = sys.argv[1]
+        loaded_data = load_data(file_path)
+        pretty_print_json(loaded_data)
+    except FileNotFoundError:
+        sys.exit('no files to load from')
