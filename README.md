@@ -1,10 +1,9 @@
 # Prettify JSON
+Makes JSON data look readable
 
-[TODO. There will be project description]
 
 # Quickstart
 
-[TODO]
 
 Example of script launch on Linux, Python 3.5:
 
@@ -12,6 +11,12 @@ Example of script launch on Linux, Python 3.5:
 
 $ python pprint_json.py <path to file>
 # TODO add output example
+[
+    {
+        "Cells": {
+            "Address": "улица Академика Павлова, дом 10",
+            "AdmArea": "Западный административный округ",
+            ...
 
 ```
 
