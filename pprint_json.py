@@ -1,4 +1,5 @@
 import json
+import sys
 
 
 def load_data(file_path):
@@ -9,14 +10,19 @@ def load_data(file_path):
         return None
 
 
-def pretty_print_json(json_data):
-    print(json.dumps(json_data, ensure_ascii=False, indent=4, sort_keys=True))
+def pretty_print_json(loaded_data):
+    print(json.dumps(loaded_data, ensure_ascii=False, indent=4, sort_keys=True))
 
 
 if __name__ == '__main__':
-    try:
+
+    if len(sys.argv) > 1:
         file_path = sys.argv[1]
-        loaded_data = load_data(file_path)
+    else:
+        sys.exit('ERROR : no file path')
+
+    loaded_data = load_data(file_path)
+    if not loaded_data:
+        sys.exit('ERROR : file not found or file not in a json format')
+    else:
         pretty_print_json(loaded_data)
-    except FileNotFoundError:
-        sys.exit('no files to load from')
